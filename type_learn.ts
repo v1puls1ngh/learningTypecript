@@ -159,4 +159,52 @@ logPoint(newVPoint);
 /* TS HANDBOOK */
 
 // THE BASICS
+/*
+	When we run JS code, the way that our JS runtime chooses what to do is by figuring out the
+	type of the value - what sort of behaviours and capabilities it has. For some values, such
+	as primitives string and number, we can identify their type at runtime using the typedef 
+	oprator. But for other things like functions, there's no corresponding runtime mechanism to
+	identify their types.
+
+	A type is the concept of describin which values can be passed and which will crash to
+	function. JS only truly provides dynamic typing-running the code to see what happens.
+
+	The alternative is to use a static type system to make predictions about what code is
+	expected before it runs.
+*/
+
+/* Static type-checking */
+/*
+	Static type systems describe the shapes and behaviors of what our values will be when we run
+	our programs. A type-checker like TS uses that information and tells us when things might be
+	going off the rails.
+*/
+
+/* Non-exception failures */
+
+/*
+	So far we discussed runtime errors - cases where the JS runtime tell us that it thinks
+	someting is nonsensical. Those cases come up because ECMAscript specification has explict
+	instructions on how the language should behave when it runs into something unexpected.
+
+	For example, the specification says that trying to call something that isn't callable should 
+	throw an error. Maybe that sound like 'obvious behaviour', but you could imagine that accessing
+	a property that doesn't exist on an object should throw an error too. Instead, JS gives us 
+	different behaviour and return the value undefined.
+	Ultimately, a static type  system has to make the call over what code should be flagged as an error
+	in its system, even if it's 'valid' JS that won't immediately throw an error. While sometimes that
+	implies a tradeoff in what you can express, the intent is to catch legitimate bugs in our programs.
+	And TS catches lot of legimate bugs.
+*/
+
+
+
+
+
+
+
+
+
+
+
 
