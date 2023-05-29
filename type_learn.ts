@@ -197,8 +197,75 @@ logPoint(newVPoint);
 	And TS catches lot of legimate bugs.
 */
 
+/*
+	Emitting with Errors:
+	Type-checking code limits the sorts of programs you can run, and so there's tradeoff on what sorts
+	of things a type-checker finds acceptable. MOst of the time that's okay, but there are scenarios 
+	where those checks get in the way. For example, imagine yourself migrating JS code over to TS and
+	introducing type-checking errors. Eventually you'll get around to cleaning things up for the type-
+	checker, but the original JS code was already working! why should converting it over to TS stop you
+	from running it?
+	So TS doesn't get in your way. Of course, over time, you may want to be a bit more defensive
+	against mistakes, and make TS act a bit more strictly. In that case, you can use the noEmitError
+	compiler option.
+	tsc --noEmitOnError file_name.ts
+*/
+
+/*
+	Explicit Types:
+	type annotations is used to describe what types of values, function or variables, can be called 
+	with.	
+	With this TS can tell us about other cases where function or variable called incorrectly.
+	Keep in mind, we don't always have to write explicit type annotations. in many cases, TS can even
+	just infer the types for us even if we omit them.
+	ex - let msg = "hello there!";
+	That's a feature, and it's best not to add annotations when the type system would end up inferring
+	the same anyway.
+*/
+
+/* Erased Types - Type annotaions arent't part of JS(or ECMAScript to be pedantic), so there really
+	aren't any browers or other runtimes that can just run TS unmodified.
+	that's why TS needs a compiler in the first place - it needs some way to strip out or transform
+	any TS specific code so that you can run it. Most TS specific coe gets erased away, and likewise,
+	here our type annotations were completely erased.
+	Note - Type annotations never change the runtime behaviour of your program.
+*/
+
+/* Downleveling:
+	TS has the ability to rewrite code from newer versions of ECMAScript to older ones such ECMASCript
+	3 or 5 (a.k.a ES3 and ES5). This process of moving from a newer or "higher" version of ECMAScript 
+	down to an older or 'lower' one is sometimes called downleveling.
+	By defualt TS targets ES3, an extremely old version of ECMASript. we could have chosen something
+	more recent by usign the target option. running with -- target es2015 changes TS to target ES5.
+*/
+
+/* Stictness:
+	TS has several type-checking strictness flags tha can be turned on or off, and all of our examples
+	will be written with all of them enabled unless otherwise stated. The strict flag in the CLI, or 
+	"strict": true in a tsconfig.json toggles them all on simultaneously, but we can opt out of them
+	individually. The two biggest one you should know about are noImplicitAny and strictNullChecks.
+*/
+
+/* noImplicitAny:
+	Recall that in some places, TS doesn't try to infer types of us and instead falls back to the most
+	lenient type: any. This isn't the worst thing that can happen - after all, falling back to 'any' is
+	just the plain JS experience anyway.
+	However, using any often defeats the purpose of using TS in the first place. The more typed you pro	   -gram is, the mover validation and tooling you'll get, meaning you'll run into fewer bugs as you 
+	code. Turning on the noImplicitAny flag will issue an error on any variables whose type is implici-
+	tly inferred as any.
+*/
+
+/*
+	strictNullChecks:
+	By default, values like null and undefiined are assignable to any other type. This can make
+	writing code easier, but forgetting to handle null and undefined is the cause of countless bugs in
+	the world - some consider it a billion dollar mistake. The strictNullChecks flag makes handling
+	null and undefined more explicit, and spares us from worrying about whether we forgot to handle
+	null and undefined.	
+*/
 
 
+// EVERYDAY TYPES
 
 
 
