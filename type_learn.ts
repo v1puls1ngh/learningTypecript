@@ -266,6 +266,130 @@ logPoint(newVPoint);
 
 
 // EVERYDAY TYPES
+/*
+	The most common types of values you'll find in JS code, and explain the corrensponding ways to 
+	describe those types in TS. This is not an exhaustive list.
+	Types can also appear in many more places than just type annotations. As we learn about the types
+	themselves, we'll also learn about the places where we can refer to these types to form new 
+	constructs
+	we start with most basic types you might encounter when writing JS or TS code. These will later 
+	form the core building blocks of more complex types.
+*/
+
+/* The primitives: string, number, and boolean */
+/*
+	JS has 3 very commonly used primitives: string, number, and boolean. Each has a corresponding type
+	in TS. These have the same name in TS as well.
+	Note - number is for numbers like 42. JS does not have a special runtime value for integers, so 
+	there's no equivalent to int or float - everything is simply number.
+
+	The type names String, Number, and Boolean (starting with capital letters) are legal, but refer to
+	some special built-in types that will very rarely appear in you code. Always use string, number, or
+	boolean for types.	
+*/
+
+/* Arrays */
+/*
+	To specify the types of an array, you can use the syntex number[]; this syntax works for any type
+	(e.g. string[] is an array of string, and so on). You may also see this written as Array<number>,
+	which means the same thing. We'll learn more about the syntax T<U> when we cover generics.
+	
+	Note - [number] is a different thing.
+*/
+
+/* any */
+/*
+	TS also has a special type, any, that you can use whenever you don't want a particular value to
+	cause typechecking errors.
+	When a value is of type any, you can access any properties of it (which will in turn be of type
+	any), call it like a function, assign it to (or form) a value of any type, or pretty much anything
+	else that's syntactically legal:
+
+	The any type is useful when you don't want to write out a long type just to convince TS that a 
+	particular line of code is okay.
+*/
+
+let n_obj: any = {x: 0};
+
+/* noImplicitAny */
+/*
+	Whe you dont' specify a type, and TS can't refer it from context, the compiler will typically 
+	default to any.
+	You usually want to avoid this, though, because 'any' isn't type-checked. Use the compiler flag
+	noImplicitAny to flag any implicit any as an error.
+*/
+
+/* Type Annotation on Variables */
+/*
+	When you declare a veriable using, const, var, or let, you can optionally add a type annotation to
+	explicit specify the type of the variable:
+*/
+let myName: string = "Allce";
+/*
+	In most cases, though, this isn't needed. Whereever possible, TS tries to automatically infer the
+	types in your code. For example, the type of a variable is inferred based on the type of its 
+	initializer.
+	For the most part you don't need to explicity learn the rules of inference. if you're starting out,
+	try using fewer type annotations than you think - you might be surprised how few you need for TS
+	to fully understand what's going on.	
+*/
+
+/* Functions */
+/*
+	Functions are the primary means of passing data around in JS. TS allows you to specify the types of
+	both the input and output values of functions.
+*/
+
+/* 
+	Parameter and Return Types Annotations:
+	When you declare a function, you can add type annotations after each parameter to declare what
+	types of parameters the function accepts. Parameter type annotations go after the parameter name.
+	When a parameter has a type annotation, arguments to that function will be checked.
+	Even if you don't have type annotations on your parameters, TS will stick check that you passed
+	the right number of arguments
+
+	You can also add return type annotations. Return type annotations appear after the parameter list.
+	Much like variable type annotation, you usually don't need a return type annotation because TS will
+	infer the function's return type based on its return statements. The type annotation in the below 
+	example doesn't change anything. Some codebases will explicitly specify a return type for
+	documentation purposes, to prevent accidental changes, or just for personal preference.
+*/
+
+function greet(name: string): string {
+	return "Hello, "+name;
+}
+
+console.log(greet("Vipul"));
+
+/* Anonymous Functions */
+/*
+	Anonymous functions are a little bit different from function declations. when
+	a function appears ina place whre TS can determing how its going nto be called,
+	the parameters of that functio are automatically given types.
+*/
+
+const names = ['alan', 'singh', 'vicktor']
+names.forEach(function (s) {
+	console.log(s);
+})
+
+/*
+	Even though the parameter s didn't have the type annotation, TS used the types
+	of forEach function, along with the inferred type of the array, to determine
+	the type of s will have.
+	This process is called contextual typing becuase the context that the function
+	occurred within informs what type it should have.
+	Similar to the inference rules, you don't need to explicitly learn how this 
+ 	happens, but understanding that it does hapepn can help you notice when type
+	annotations aren't needed. Later, we'll see more examples of how the context 
+	that a value occurs in can affect its type
+*/
+
+
+
+
+
+
 
 
 
