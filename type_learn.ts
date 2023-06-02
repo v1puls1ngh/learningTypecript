@@ -368,7 +368,7 @@ console.log(greet("Vipul"));
 	the parameters of that functio are automatically given types.
 */
 
-const names = ['alan', 'singh', 'vicktor']
+const names = ['alan', 'singh', 'juan']
 names.forEach(function (s) {
 	console.log(s);
 })
@@ -380,21 +380,51 @@ names.forEach(function (s) {
 	This process is called contextual typing becuase the context that the function
 	occurred within informs what type it should have.
 	Similar to the inference rules, you don't need to explicitly learn how this 
- 	happens, but understanding that it does hapepn can help you notice when type
+ 	happens, but understanding that it does happen can help you notice when type
 	annotations aren't needed. Later, we'll see more examples of how the context 
 	that a value occurs in can affect its type
 */
 
+/*
+	Object Types
+*/
+/*
+	Apart form primitives, the most common sor to type you'ss encounter is an
+	object type. This refers to JS value with properties, which is almost all of 
+	them! To define an object type, we simply list its propeties and their types.
+*/
 
+function printCoord(pt: {x: number, y: number}) {
+	console.log(pt.x, pt.y);
+}
 
+printCoord({x: 45, y: 34});
 
+/*
+	Here, we annotated the parameter with a type with two properties - x and y - which are both number.
+	You can use, or ; to seperate the properties, and the last separate is optional
+	is optional either way.
+	the type part of each property is also optional. ifyo don't specity a type, it will assumed to be any
+*/
+/*
+	Optional Properties:
+	Object types can also specify that some or all of their propeties are optional.
+	To do this, add a ? after the property name:
+*/
 
+function printName(obj: {first: string; last?: string}) {
+	console.log(`${obj.first} ${obj.last}`);
+}
 
+printName({first: 'vipul'});
 
+/*
+	In JS, if you access a property that doesn't exist, you'll get the value
+	undefined rather than a runtime error. Because of this, when you read from an
+	optional property, you'sll have to check for undefined before using it.
+*/
 
-
-
-
+/* Union Types */
 
 
 
