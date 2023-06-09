@@ -426,6 +426,64 @@ printName({first: 'vipul'});
 
 /* Union Types */
 
+/*
+	TS's type system allows to build new types out of existing types using large variety of
+operators. Now that we know how to write a few types, it's time to start
+	combining them in interesting ways.
+*/
+
+/*
+	Defining a union type:
+	The first way to combine types you might see is a union type. A union type
+	is a type formed from two or more other types, representing values that may
+	be any one of those types. We refer to each of these types as the union's 
+	members.	
+*/
+
+function printId(id: number | string) {
+	console.log("Your Id is :" + id);
+}
+
+printId(7);
+
+/*
+	Working with Union types:
+	It's easy to provide a value matching a union type - simply provide a type
+	matching any of the union's members. if you have a value of a union type, 
+	how do you work with it?
+	TS will only allow an operation if it is valid for every memeber of the 
+	union. for exmaple if you have the union string | number, you can't use 
+	methods that only available on string.
+	The solution is to narrow the union with code, the same as you would in JS
+	without type annotatios. Narrowing occurs when TS can deduce a more specific
+	type for a value based on the structure of the code.
+
+	if members of the union have common property, then it can be used without
+	narrowing.
+*/
+
+function printIdAgain(id: number | string) {
+	if (typedef id === 'string') {
+		// code ..
+	}
+
+	else {
+		// code ..
+	}
+}
+
+
+/* Type Aliases */
+
+
+
+
+
+
+
+
+
+
 
 
 
